@@ -1,5 +1,118 @@
 # Proyecto Base Implementando Clean Architecture
 
+
+## Endpoints 
+
+### Create Ticket
+`POST api/tickets`
+
+```
+Body:
+{
+    "userId": 456,
+    "status": true
+}
+```
+```
+Response:
+{
+    "id": 1,
+    "userId": 456,
+    "creationDate": "2023-07-23T13:29:42.245242",
+    "updateDate": null,
+    "status": true
+}
+```
+
+### Update Ticket
+`PUT api/tickets`
+
+```
+Body:
+{
+    "id": 1,
+    "userId": 456,
+    "status": false
+}
+```
+```
+Response:
+{
+    "id": 1,
+    "userId": 456,
+    "creationDate": "2023-07-23T13:29:42.245242",
+    "updateDate": "2023-07-23T13:31:42.195407",
+    "status": false
+}
+```
+
+### Delete Ticket
+`PUT api/tickets`
+
+```
+Body:
+{
+    "ticketId": 1
+}
+```
+```
+Response:
+void 202 Accepted
+```
+### Get All Ticket
+`GET api/tickets`
+
+RequestParam:
+- ?page
+- ?size
+
+```
+Response:
+{
+    "content": [
+        {
+            "id": 2,
+            "userId": 457,
+            "creationDate": "2023-07-23T13:33:20.127671",
+            "updateDate": null,
+            "status": true
+        },
+        {
+            "id": 3,
+            "userId": 458,
+            "creationDate": "2023-07-23T13:33:24.340639",
+            "updateDate": null,
+            "status": true
+        }
+    ],
+    "pageable": {
+        "sort": {
+            "empty": true,
+            "unsorted": true,
+            "sorted": false
+        },
+        "offset": 0,
+        "pageNumber": 0,
+        "pageSize": 10,
+        "paged": true,
+        "unpaged": false
+    },
+    "totalPages": 1,
+    "totalElements": 2,
+    "last": true,
+    "size": 10,
+    "number": 0,
+    "sort": {
+        "empty": true,
+        "unsorted": true,
+        "sorted": false
+    },
+    "numberOfElements": 2,
+    "first": true,
+    "empty": false
+}
+```
+
 ## Antes de Iniciar
 
 Empezaremos por explicar los diferentes componentes del proyectos y partiremos de los componentes externos, continuando con los componentes core de negocio (dominio) y por último el inicio y configuración de la aplicación.
