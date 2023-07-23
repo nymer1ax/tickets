@@ -10,14 +10,14 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class UpdateTicketUseCase {
     private final TicketRepository ticketRepository;
-    public Ticket updateTicket(Long ticketId, Long userId, Boolean status) {
+    public Ticket updateTicket(Ticket ticket) {
 
-        Optional<Ticket> ticketExists = ticketRepository.getTicketById(ticketId);
+        Optional<Ticket> ticketExists = ticketRepository.getTicketById(ticket.getId());
 
         if (ticketExists.isEmpty()) {
             throw new ResourceNotFoundException("Ticket could not be found.");
         }
 
-        return ticketRepository.updateTicket(ticketId, userId, status);
+        return ticketRepository.updateTicket(ticket.getId(), ticket.getUserId(), ticket.getStatus());
     }
 }
