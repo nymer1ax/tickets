@@ -15,6 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "/api", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -43,9 +44,10 @@ public class ApiRest {
 
     @GetMapping(path = "/tickets")
     public ResponseEntity<Page<Ticket>> getAllTickets(@RequestParam(defaultValue = "0") int page,
-                                                      @RequestParam(defaultValue = "10") int size
+                                                      @RequestParam(defaultValue = "10") int size,
+                                                      @RequestParam(required = false) Optional<Long> ticketId
     ) {
-        List<Ticket> tickets = getAllTicketsUseCase.getAllTickets();
+        List<Ticket> tickets = getAllTicketsUseCase.getAllTickets(ticketId);
         Page<Ticket> pageList = new PageImpl<>(tickets, PageRequest.of(page, size), tickets.size());
         return ResponseEntity.status(HttpStatus.CREATED).body(pageList);
     }
