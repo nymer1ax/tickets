@@ -65,7 +65,7 @@ void 202 Accepted
 RequestParam:
 - ?page
 - ?size
-
+- ?ticketId=1
 ```
 Response:
 {
