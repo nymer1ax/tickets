@@ -18,6 +18,6 @@ public class UpdateTicketUseCase {
             throw new ResourceNotFoundException("Ticket could not be found.");
         }
 
-        return ticketRepository.updateTicket(ticket.getId(), ticket.getUserId(), ticket.getStatus());
+        return ticketRepository.updateTicket(ticketExists.get().getId(), ticket.getUserId(), ticketExists.get().getCreationDate(), ticket.getStatus());
     }
 }

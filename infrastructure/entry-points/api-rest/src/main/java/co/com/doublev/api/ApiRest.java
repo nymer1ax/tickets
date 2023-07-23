@@ -41,7 +41,7 @@ public class ApiRest {
         return ResponseEntity.status(HttpStatus.ACCEPTED).build();
     }
 
-    @PostMapping(path = "/tickets")
+    @GetMapping(path = "/tickets")
     public ResponseEntity<Page<Ticket>> getAllTickets(@RequestParam(defaultValue = "0") int page,
                                                       @RequestParam(defaultValue = "10") int size
     ) {

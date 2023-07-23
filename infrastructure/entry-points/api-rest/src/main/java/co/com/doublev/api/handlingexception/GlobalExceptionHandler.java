@@ -5,6 +5,7 @@ import co.com.doublev.usecase.exceptions.custom.CustomException;
 import co.com.doublev.usecase.exceptions.custom.ResourceAlreadyExistsException;
 import co.com.doublev.usecase.exceptions.custom.ResourceNotFoundException;
 import io.micrometer.core.instrument.config.validate.ValidationException;
+import org.springframework.dao.InvalidDataAccessApiUsageException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -56,6 +57,15 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         response.setMessage(ex.getMessage());
         response.setDate(LocalDateTime.now());
         return new ResponseEntity<>(response, HttpStatus.UNPROCESSABLE_ENTITY);
+    }
+
+    @ExceptionHandler(InvalidDataAccessApiUsageException.class)
+    public ResponseEntity<ExceptionResponse> invalidAccess(InvalidDataAccessApiUsageException ex){
+        ExceptionResponse response=new ExceptionResponse();
+        response.setCode("BAD_REQUEST");
+        response.setMessage(ex.getMessage());
+        response.setDate(LocalDateTime.now());
+        return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
 
 

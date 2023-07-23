@@ -20,7 +20,12 @@ public class TicketDataAdapterRepository extends AdapterOperations<Ticket, Ticke
 
     @Override
     public Ticket createTicket(Ticket ticket) {
-        TicketData ticketData = mapper.map(ticket, TicketData.class);
+        TicketData ticketData = TicketData.builder()
+                .id(ticket.getId())
+                .status(ticket.getStatus())
+                .userId(ticket.getUserId())
+                .creationDate(LocalDateTime.now())
+                .build();
         TicketData ticketSave = repository.save(ticketData);
         return mapper.map(ticketSave, Ticket.class);
     }
@@ -38,12 +43,13 @@ public class TicketDataAdapterRepository extends AdapterOperations<Ticket, Ticke
     }
 
     @Override
-    public Ticket updateTicket(Long ticketId, Long userId, Boolean status) {
+    public Ticket updateTicket(Long ticketId, Long userId, LocalDateTime creationDate,  Boolean status) {
         TicketData ticketData = TicketData
                 .builder()
                 .id(ticketId)
                 .userId(userId)
                 .status(status)
+                .creationDate(creationDate)
                 .updateDate(LocalDateTime.now())
                 .build();
         repository.save(ticketData);
