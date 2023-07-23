@@ -1,16 +1,16 @@
 buildscript {
 	ext {
-		cleanArchitectureVersion = '2.2.3'
-		springBootVersion = '2.6.2'
-		sonarVersion = '3.0'
-		jacocoVersion = '0.8.5'
-        lombokVersion = '1.18.22'
+		cleanArchitectureVersion = '3.6.0'
+		springBootVersion = '3.1.1'
+		sonarVersion = '4.2.1.3168'
+		jacocoVersion = '0.8.10'
+        lombokVersion = '1.18.28'
 	}
 }
 
 plugins {
 	id 'co.com.bancolombia.cleanArchitecture' version "${cleanArchitectureVersion}"
-	id 'org.springframework.boot' version "${springBootVersion}"
+	id 'org.springframework.boot' version "${springBootVersion}" apply false
 	id 'org.sonarqube' version "${sonarVersion}"
 	id 'jacoco'
 }
@@ -21,6 +21,7 @@ sonarqube {
         property "sonar.sourceEnconding", "UTF-8"
         property "sonar.modules", "${modules.join(',')}"
         property "sonar.sources", "src,deployment,settings.gradle,main.gradle,build.gradle,${modules.collect { "${it}/build.gradle" }.join(',')}"
+        property "sonar.exclusions","**/MainApplication.java"
         property "sonar.test", "src/test"
         property "sonar.java.binaries", ""
         property "sonar.junit.reportsPath", ""
