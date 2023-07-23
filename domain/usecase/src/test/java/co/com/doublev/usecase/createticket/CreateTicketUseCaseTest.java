@@ -26,7 +26,7 @@ class CreateTicketUseCaseTest {
     }
 
     @Test
-    public void testCreateNewTicket() {
+    void testCreateNewTicket() {
         Ticket inputTicket = Ticket.builder()
                 .userId(1L)
                 .creationDate(LocalDateTime.now())
@@ -51,7 +51,7 @@ class CreateTicketUseCaseTest {
     }
 
     @Test
-    public void testCreateNewTicketNullInput() {
+    void testCreateNewTicketNullInput() {
         Ticket inputTicket = null;
 
         Ticket createdTicket = createTicketUseCase.createNewTicket(inputTicket);

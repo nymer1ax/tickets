@@ -29,7 +29,7 @@ class GetAllTicketsUseCaseTest {
     }
 
     @Test
-    public void testGetAllTickets() {
+    void testGetAllTickets() {
         Ticket ticket1 = Ticket.builder()
                 .id(1L)
                 .userId(1L)

@@ -28,7 +28,7 @@ class DeleteTicketUseCaseTest {
     }
 
     @Test
-    public void testDeleteExistingTicket() {
+    void testDeleteExistingTicket() {
         Long ticketId = 1L;
         Ticket existingTicket = Ticket.builder()
                 .id(ticketId)
@@ -46,7 +46,7 @@ class DeleteTicketUseCaseTest {
     }
 
     @Test
-    public void testDeleteNonExistingTicket() {
+    void testDeleteNonExistingTicket() {
 
         Long ticketId = 2L;
 
